@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './main.css';
 
 class UnconnectedSearchResults extends Component {
   render = () => {
@@ -17,20 +18,25 @@ class UnconnectedSearchResults extends Component {
       <div>
         <div>{this.props.tittle}</div>
         <div>StateQueryDeck: {this.props.propsQueryDeckTitle}</div>
-        {decks.map((deck) => {
-          return (
-            <div key={deck.id}>
-              <form name={deck.id} onSubmit={this.onSubmitHandler}>
-                <div>
-                  {deck.id} - {deck.title}
-                </div>
-                <div>
-                  <Link to={`/playDeck/${deck.id}`}>Play</Link>
-                </div>
-              </form>
-            </div>
-          );
-        })}
+        <div
+          className="containerC
+        ard"
+        >
+          {decks.map((deck) => {
+            return (
+              <div key={deck.id} className="card">
+                <form name={deck.id} onSubmit={this.onSubmitHandler}>
+                  <div>
+                    {deck.id} - {deck.title}
+                  </div>
+                  <div>
+                    <Link to={`/playDeck/${deck.id}`}>Play</Link>
+                  </div>
+                </form>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   };

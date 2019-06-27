@@ -9,7 +9,7 @@ class UnconnectedApp extends Component {
   renderAllDecks = () => {
     return (
       <div>
-        <SearchResults tittle="Search Results" />
+        <SearchResults tittle="Search Results:" />
       </div>
     );
   };
@@ -19,7 +19,8 @@ class UnconnectedApp extends Component {
   renderPlayDeck = (renderParameter) => {
     let idDeck = renderParameter.match.params.dId;
     //alert(idDeck);
-    return <DeckDetails propsIdDeck={idDeck} />;
+    this.props.dispatch({ type: 'playingDeck', value: idDeck });
+    return <DeckDetails />; //<DeckDetails propsLinkIdDeck={idDeck} />
   };
 
   onChangeHandler = (ev) => {
@@ -30,7 +31,7 @@ class UnconnectedApp extends Component {
   render = () => {
     return (
       <BrowserRouter>
-        <div>
+        <div className="container">
           <div>{this.props.tittle}</div>
           <div>
             <input
