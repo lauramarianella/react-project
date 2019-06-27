@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SearchResults from './SearchResults.jsx';
+import DeckDetails from './DeckDetails.jsx';
 import { connect } from 'react-redux';
 import './main.css';
 
@@ -14,6 +15,11 @@ class UnconnectedApp extends Component {
   };
   renderCreateDeck = () => {
     return <div>Create new Decks</div>;
+  };
+  renderPlayDeck = (renderParameter) => {
+    let idDeck = renderParameter.match.params.dId;
+    //alert(idDeck);
+    return <DeckDetails propsIdDeck={idDeck} />;
   };
 
   onChangeHandler = (ev) => {
@@ -43,6 +49,11 @@ class UnconnectedApp extends Component {
           <Route exact={true} path="/" render={this.renderAllDecks} />
           <Route
             exact={true}
+            path="/playDeck/:dId"
+            render={this.renderPlayDeck}
+          />
+          <Route
+            exact={true}
             path="/createDeck"
             render={this.renderCreateDeck}
           />
@@ -54,6 +65,7 @@ class UnconnectedApp extends Component {
 
 let mapStateToProps = (st) => {
   return {
+    propsDataDecks: st.stateDataDecks,
     propsQueryDeckTitle: st.stateQueryDeckTitle,
   };
 };

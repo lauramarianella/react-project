@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class UnconnectedSearchResults extends Component {
   render = () => {
@@ -19,10 +20,14 @@ class UnconnectedSearchResults extends Component {
         {decks.map((deck) => {
           return (
             <div key={deck.id}>
-              <div>{deck.title}</div>
-              <div>
-                <input type="button" value="Play" />
-              </div>
+              <form name={deck.id} onSubmit={this.onSubmitHandler}>
+                <div>
+                  {deck.id} - {deck.title}
+                </div>
+                <div>
+                  <Link to={`/playDeck/${deck.id}`}>Play</Link>
+                </div>
+              </form>
             </div>
           );
         })}
