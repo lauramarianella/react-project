@@ -36,6 +36,33 @@ let reducer = (state, action) => {
     };
   }
 
+  if (action.type === 'creatingDeck') {
+    return {
+      ...state,
+      stateNewDataDeck: {
+        id: state.stateDataDecks.length,
+        title: '',
+        cards: [
+          {
+            question: '',
+            choices: [],
+            answer: '',
+          },
+        ],
+      },
+    };
+  }
+
+  if (action.type === 'onChangeDeck') {
+    console.log(action);
+    const stateNewDataDeck = { ...state.stateNewDataDeck };
+    stateNewDataDeck.title = action.title;
+    return { ...state, stateNewDataDeck };
+  }
+
+  if (action.type === 'insertingDeck') {
+  }
+
   return state;
 };
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import SearchResults from './SearchResults.jsx';
 import DeckDetails from './DeckDetails.jsx';
+import CreateDeck from './CreateDeck.jsx';
 import { connect } from 'react-redux';
 import './main.css';
 
@@ -14,7 +15,9 @@ class UnconnectedApp extends Component {
     );
   };
   renderCreateDeck = () => {
-    return <div>Create new Decks</div>;
+    //return <div>Create new Decks</div>;
+    this.props.dispatch({ type: 'creatingDeck' });
+    return <CreateDeck />;
   };
   renderPlayDeck = (renderParameter) => {
     let idDeck = renderParameter.match.params.dId;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Result from './Result.jsx';
 import './main.css';
 
 class UnconnectedDeckDetails extends Component {
