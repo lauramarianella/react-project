@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MIN_NUM_CARDS_CHOICES } from './data.js';
+import { MIN_NUM_CARDS_CHOICES, MIN_NUM_CARDS } from './data.js';
 import Choice from './Choice.jsx';
 
 class UnconnectedCard extends Component {
-  onChangeHandler = (ev) => {
-    alert([ev.target.name]);
-
+  onChangeHandler = (ev, i) => {
     this.props.dispatch({
-      type: 'onChangeDeck',
-      [ev.target.name]: ev.target.value,
+      type: 'onChangeQuestion',
+      value: ev.target.value,
+      i: i,
     });
   };
+  deleteCard = (ev, i) => {
+    this.props.dispatch({ type: '--Card', i: i });
+  };
+  addChoice = (ev, i) => {
+    this.props.dispatch({ type: '++Choice', i: i });
+  };
   render() {
-    const choiceArray = [];
-    for (let i = 0; i < MIN_NUM_CARDS_CHOICES; i++) {
-      choiceArray.push(
-        <Choice
-          propsIdCard={this.props.propsIdCard}
-          propsIndexChoice={i}
-          onChange={this.onChangeHandler}
+    let deleteButton =
+      this.props.propsIdCard >= MIN_NUM_CARDS ? (
+        <input
+          type="button"
+          value="-"
+          onClick={(ev) => this.deleteCard(ev, this.props.propsIdCard)}
         />
+      ) : (
+        ''
+      );
+
+    const choices = [];
+    for (
+      let i = 0;
+      i <
+      this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices.length;
+      i++
+    ) {
+      choices.push(
+        <Choice propsIdCard={this.props.propsIdCard} propsIndexChoice={i} />
       );
     }
     return (
@@ -32,28 +49,26 @@ class UnconnectedCard extends Component {
               type="text"
               placeholder={`Question ${this.props.propsIdCard}`}
               name={this.props.propsIdCard}
-              value=""
-              onChange={this.onChangeHandler}
+              value={
+                this.props.propsNewDataDeck.cards[this.props.propsIdCard]
+                  .question
+              }
+              onChange={(ev) =>
+                this.onChangeHandler(ev, this.props.propsIdCard)
+              }
             />
+
+            {deleteButton}
           </div>
-          {choiceArray.map((choice, i) => {
+          {choices.map((choice, i) => {
             return <div key={`keyChoice${i}`}>{choice}</div>;
           })}
           <div>
-            <input type="button" value="Remove choice" />
-          </div>
-          <div>
-            <Choice
-              propsIdCard={this.props.propsIdCard}
-              propsIndexChoice={choiceArray.length}
-              onChange={this.onChangeHandler}
+            <input
+              type="button"
+              value="Add choice"
+              onClick={(ev) => this.addChoice(ev, this.props.propsIdCard)}
             />
-          </div>
-          <div>
-            <input type="button" value="Remove choice" />
-          </div>
-          <div>
-            <input type="button" value="Add choice" />
           </div>
         </div>
       </div>
@@ -62,7 +77,9 @@ class UnconnectedCard extends Component {
 }
 
 let mapStateToProps = (st) => {
-  return { propsNewDataDeck: st.stateNewDataDeck };
+  return {
+    propsNewDataDeck: st.stateNewDataDeck,
+  };
 };
 
 let Card = connect(mapStateToProps)(UnconnectedCard);

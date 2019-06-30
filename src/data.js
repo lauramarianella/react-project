@@ -86,5 +86,5 @@ export const initialDecks = [
   },
 ];
 
-export let MIN_NUM_CARDS = 2;
-export let MIN_NUM_CARDS_CHOICES = 2;
+export let MIN_NUM_CARDS = 1;
+export let MIN_NUM_CARDS_CHOICES = 3;

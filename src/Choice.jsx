@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { MIN_NUM_CARDS_CHOICES } from './data';
 class UnconnectedChoice extends Component {
+  onChangeHandler = (ev, j) => {
+    this.props.dispatch({
+      type: 'onChangeChoice',
+      value: ev.target.value,
+      i: this.props.propsIdCard,
+      j: j,
+    });
+  };
+
+  deleteChoice = (ev, j) => {
+    this.props.dispatch({
+      type: '--Choice',
+      i: this.props.propsIdCard,
+      j: j,
+    });
+  };
+
   render() {
     let radioBtn = (
       <input
@@ -18,6 +36,18 @@ class UnconnectedChoice extends Component {
           checked
         />
       );
+
+    let deleteButton =
+      this.props.propsIndexChoice >= MIN_NUM_CARDS_CHOICES ? (
+        <input
+          type="button"
+          value="-"
+          onClick={(ev) => this.deleteChoice(ev, this.props.propsIndexChoice)}
+        />
+      ) : (
+        ''
+      );
+
     return (
       <div>
         <div>
@@ -26,8 +56,17 @@ class UnconnectedChoice extends Component {
         <div>
           <input
             type="text"
-            placeholder={`Answer ${this.props.propsIndexChoice + 1}`}
+            placeholder={`Answer ${this.props.propsIndexChoice}`}
+            value={
+              this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices[
+                this.props.propsIndexChoice
+              ]
+            }
+            onChange={(ev) =>
+              this.onChangeHandler(ev, this.props.propsIndexChoice)
+            }
           />
+          {deleteButton}
         </div>
       </div>
     );
@@ -35,7 +74,7 @@ class UnconnectedChoice extends Component {
 }
 
 let mapStateToProps = (st) => {
-  return {};
+  return { propsNewDataDeck: st.stateNewDataDeck };
 };
 
 let Choice = connect(mapStateToProps)(UnconnectedChoice);

@@ -4,24 +4,26 @@ import { MIN_NUM_CARDS } from './data.js';
 import Card from './Card.jsx';
 
 class UnconnectedCreateDeck extends Component {
-  onSubmitHandler(ev) {
+  onSubmitHandler = (ev) => {
     ev.preventDefault();
-    alert('Submitting...');
-
     this.props.dispatch({ type: 'insertingDeck' });
-  }
+  };
 
   onChangeHandler = (ev) => {
     this.props.dispatch({
-      type: 'onChangeDeck',
+      type: 'onChangeTitle',
       [ev.target.name]: ev.target.value,
     });
   };
 
+  addCard = (ev) => {
+    this.props.dispatch({ type: '++Card' });
+  };
+
   render() {
-    const cardArray = [];
-    for (let i = 0; i < MIN_NUM_CARDS; i++) {
-      cardArray.push(<Card propsIdCard={i} />);
+    const cards = [];
+    for (let i = 0; i < this.props.propsNewDataDeck.cards.length; i++) {
+      cards.push(<Card propsIdCard={i} />);
     }
 
     return (
@@ -40,12 +42,13 @@ class UnconnectedCreateDeck extends Component {
         <div>
           <form onSubmit={this.onSubmitHandler}>
             <div>Possible Id: {this.props.propsNewDataDeck.id}</div>
-            {cardArray.map((card, i) => {
+            {cards.map((card, i) => {
               return <div key={`keyCard${i}`}>{card}</div>;
             })}
             <div>
-              <input type="button" value="Add card" />
+              <input type="button" value="Add card" onClick={this.addCard} />
             </div>
+
             <div>
               <input type="submit" value="Submit" />
             </div>
