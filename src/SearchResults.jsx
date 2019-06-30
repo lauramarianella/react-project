@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class UnconnectedSearchResults extends Component {
   render = () => {
-    let decks;
+    let decks = [];
     this.props.propsQueryDeckTitle === ''
       ? (decks = this.props.propsDataDecks)
       : (decks = this.props.propsDataDecks.filter((deck) => {
@@ -13,6 +13,8 @@ class UnconnectedSearchResults extends Component {
             .toLowerCase()
             .includes(this.props.propsQueryDeckTitle.toLowerCase());
         }));
+    // console.log('After SearchResults...');
+    // console.log(decks);
 
     return (
       <div>

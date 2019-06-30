@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { MIN_NUM_CARDS } from './data.js';
 import Card from './Card.jsx';
+import { browserHistory } from 'react-router';
 
 class UnconnectedCreateDeck extends Component {
   onSubmitHandler = (ev) => {

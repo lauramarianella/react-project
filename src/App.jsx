@@ -29,7 +29,9 @@ class UnconnectedApp extends Component {
   onChangeHandler = (ev) => {
     this.props.dispatch({ type: 'queryDeckTitle', value: ev.target.value });
   };
-  componentDidMount() {}
+  componentDidMount() {
+    //alert('componentDidMount() ');
+  }
 
   render = () => {
     return (
@@ -42,7 +44,6 @@ class UnconnectedApp extends Component {
               placeholder="Search deck"
               onChange={this.onChangeHandler}
             />
-            {/* <div>StateQueryDeck: {this.props.propsQueryDeckTitle}</div> */}
           </div>
           <div>
             <Link to="/">Home</Link>
