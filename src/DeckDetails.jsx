@@ -33,11 +33,17 @@ class UnconnectedDeckDetails extends Component {
             </div>
             <div className="card-containerBtns">
               {currentCard.choices.map((choice) => (
-                <div className="card-playBtn" key={choice}>
-                  <a href="#" onClick={this.onClickHandler}>
-                    <div>{choice}</div>
-                  </a>
-                </div>
+                // <div className="card-playBtn" key={choice}>
+                //   <a href="#" onClick={this.onClickHandler}>
+                //     <div>{choice}</div>
+                //   </a>
+                // </div>
+                <input
+                  type="button"
+                  onClick={this.onClickHandler}
+                  value={choice}
+                  className="card-playBtn"
+                />
               ))}
             </div>
           </div>

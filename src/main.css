@@ -166,6 +166,7 @@ ul > li {
   align-items: center;
 }
 .card-playBtn {
+  color: #fff;
   text-align: center;
   padding: 5px;
   margin: 10px;
