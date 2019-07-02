@@ -27,7 +27,7 @@ class UnconnectedCreateDeck extends Component {
     }
 
     return (
-      <div>
+      <div className="container-results">
         <div>Creating new deck...</div>
         <div>
           Title:

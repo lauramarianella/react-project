@@ -59,7 +59,7 @@ class UnconnectedApp extends Component {
               <Link to="/createDeck">Create deck</Link>
             </div>
             <button class="mobile-nav">
-              <img src="imgs/menu.svg" />
+              <img src="/imgs/menu.svg" />
               <div class="mobile-menu">
                 <ul>
                   <li>

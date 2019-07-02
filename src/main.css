@@ -120,13 +120,14 @@ ul > li {
 }
 
 .container {
-  padding: 100px 20px 100px 20px;
+  padding: 20px 0px 20px 0px;
   width: 100%;
   background: (--background-content);
 }
 
 .cards-container {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
 }
 
@@ -143,7 +144,7 @@ ul > li {
 .card {
   padding: 10px;
   min-height: 150px;
-  min-width: 200px;
+  min-width: 60px;
 }
 .card-deck-title {
   padding: 20px;
@@ -195,5 +196,20 @@ ul > li {
     grid-template-rows: auto;
     grid-column-gap: 0px;
     align-items: center;
+  }
+  .cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .card {
+    padding: 10px;
+    min-height: 150px;
+    min-width: 200px;
+  }
+  .container {
+    padding: 100px 20px 100px 20px;
+    width: 100%;
+    background: (--background-content);
   }
 }
