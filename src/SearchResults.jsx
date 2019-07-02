@@ -17,28 +17,27 @@ class UnconnectedSearchResults extends Component {
     // console.log(decks);
 
     return (
-      <div>
-        <div>{this.props.tittle}</div>
-        <div>StateQueryDeck: {this.props.propsQueryDeckTitle}</div>
-        <div
-          className="containerC
-        ard"
-        >
-          {decks.map((deck) => {
-            return (
-              <div key={deck.id} className="card">
-                <form name={deck.id} onSubmit={this.onSubmitHandler}>
-                  <div>
-                    {deck.id} - {deck.title}
+      <div className="cards-container">
+        {decks.map((deck) => {
+          return (
+            <div key={deck.id} className="card-container">
+              <form name={deck.id} onSubmit={this.onSubmitHandler}>
+                <div className="card">
+                  <div className="card-deck-title center-content">
+                    {deck.title} {/* {deck.id} - */}
                   </div>
-                  <div>
-                    <Link to={`/playDeck/${deck.id}`}>Play</Link>
+                  <div className="card-containerBtns">
+                    <div className="card-playBtn">
+                      <Link to={`/playDeck/${deck.id}`}>
+                        <div>Play</div>
+                      </Link>
+                    </div>
                   </div>
-                </form>
-              </div>
-            );
-          })}
-        </div>
+                </div>
+              </form>
+            </div>
+          );
+        })}
       </div>
     );
   };

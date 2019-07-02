@@ -23,21 +23,23 @@ class UnconnectedDeckDetails extends Component {
       let currentCard = deck.cards[this.props.propsDeckIndexQuestion];
 
       return (
-        <div key={this.props.propsIdDeck}>
-          <div>
+        <div key={this.props.propsIdDeck} className="center-content">
+          <div className="card">
             Detalles
             <div>Id Deck: {this.props.propsIdDeck}</div>
-            <div>Index Question: {this.props.propsDeckIndexQuestion}</div>
-            <div>{currentCard.question}</div>
-            {currentCard.choices.map((choice) => (
-              <div key={choice}>
-                <input
-                  type="button"
-                  value={choice}
-                  onClick={this.onClickHandler}
-                />
-              </div>
-            ))}
+            {/* <div>Index Question: {this.props.propsDeckIndexQuestion}</div> */}
+            <div className="card-deck-title">
+              <h2>{currentCard.question}</h2>
+            </div>
+            <div className="card-containerBtns">
+              {currentCard.choices.map((choice) => (
+                <div className="card-playBtn" key={choice}>
+                  <a href="#" onClick={this.onClickHandler}>
+                    <div>{choice}</div>
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       );

@@ -40,7 +40,7 @@ class UnconnectedResult extends Component {
       : '';
 
     return (
-      <div>
+      <div className="container-results">
         <div> played id: {playedDeck.id}</div>
         <div> played title: {playedDeck.title}</div>
         <div>{scoreText}</div>

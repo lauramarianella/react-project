@@ -1,23 +1,199 @@
+:root {
+  --primary-color: #4a91f2;
+  --faded-color: #518cdd;
+
+  --nav-margin: 25px;
+  --border-radius: 10px;
+  --background-content: rgb(206, 202, 202);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  font-family: Poppins, sans-serif;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+#logo {
+  margin-left: var(--nav-margin);
+  line-height: 0;
+  transition: opacity 0.2s ease-in-out;
+  padding: 10px;
+}
+
+#logo:hover {
+  opacity: 0.5;
+}
+
+#logo > img {
+  max-width: 50px;
+}
+
+.nav {
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-column-gap: 0px;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.nav-link {
+  display: none;
+  padding: 10px;
+}
+#logo a,
+.nav-link a {
+  color: #fff;
+  position: relative;
+  margin: 0 var(--nav-margin);
+  padding: 10px;
   font-family: 'Poppins', sans-serif;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#logo > a > div {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-field {
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+  display: block;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--faded-color);
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+.mobile-nav {
+  margin-right: 15px;
+  background: none;
+  border: 0;
+  padding: 15px;
+  outline: 0;
+}
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+}
+.mobile-nav-link a {
+  padding: 10px;
+  display: block;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.mobile-nav:hover > .mobile-menu {
+  display: block;
+}
+
+/* .nav-link:hover, */
+.mobile-nav-link:hover {
+  background-color: var(--faded-color);
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  list-style-type: none;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
+  padding: 100px 20px 100px 20px;
+  width: 100%;
+  background: (--background-content);
 }
 
-.containerCard {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-column-gap: 20px;
+.cards-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card-container {
+  padding: 20px;
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
   padding: 10px;
-  height: 50px;
-  width: 200px;
+  min-height: 150px;
+  min-width: 200px;
+}
+.card-deck-title {
+  padding: 20px;
+  height: 50%;
+  min-height: 50px;
+  background-color: black;
   border: 2px solid black;
-  border-radius: 4px;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-containerBtns {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+.card-playBtn {
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+  width: 80%;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius) var(--border-radius);
+}
+.card-playBtn > a {
+  color: #fff;
+}
+
+.container-results {
+  color: #000;
+}
+
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none;
+  }
+
+  .nav-link {
+    display: block;
+  }
+
+  .nav {
+    /* display: grid; */
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-rows: auto;
+    grid-column-gap: 0px;
+    align-items: center;
+  }
 }

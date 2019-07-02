@@ -12,9 +12,9 @@ const MyApp = () => {
   //persistor.purge();
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App tittle="Go it!" />
-      </PersistGate>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <App tittle="Got it!" />
+      {/* </PersistGate> */}
     </Provider>
   );
 };

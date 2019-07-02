@@ -9,9 +9,9 @@ import './main.css';
 class UnconnectedApp extends Component {
   renderAllDecks = () => {
     return (
-      <div>
-        <SearchResults tittle="Search Results:" />
-      </div>
+      // <div className="cards-container">
+      <SearchResults tittle="Search Results:" />
+      // </div>
     );
   };
   renderCreateDeck = () => {
@@ -36,32 +36,69 @@ class UnconnectedApp extends Component {
   render = () => {
     return (
       <BrowserRouter>
-        <div className="container">
-          <div>{this.props.tittle}</div>
-          <div>
-            <input
-              type="text"
-              placeholder="Search deck"
-              onChange={this.onChangeHandler}
+        <div>
+          <div className="nav">
+            <div id="logo">
+              <a href="#">
+                <div>{this.props.tittle}</div>
+                {/* <img src="imgs/logo.svg" /> */}
+              </a>
+            </div>
+            <div className="nav-link">
+              <input
+                type="text"
+                placeholder="Search deck"
+                onChange={this.onChangeHandler}
+                className="text-field"
+              />
+            </div>
+            <div className="nav-link">
+              <Link to="/">Home</Link>
+            </div>
+            <div className="nav-link">
+              <Link to="/createDeck">Create deck</Link>
+            </div>
+            <button class="mobile-nav">
+              <img src="imgs/menu.svg" />
+              <div class="mobile-menu">
+                <ul>
+                  <li>
+                    <div className="mobile-nav-link">
+                      <input
+                        type="text"
+                        placeholder="Search deck"
+                        onChange={this.onChangeHandler}
+                        className="text-field"
+                      />
+                    </div>
+                  </li>
+                  <li>
+                    <div className="mobile-nav-link">
+                      <Link to="/">Home</Link>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="mobile-nav-link">
+                      <Link to="/createDeck">Create deck</Link>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </button>
+          </div>
+          <div className="container">
+            <Route exact={true} path="/" render={this.renderAllDecks} />
+            <Route
+              exact={true}
+              path="/playDeck/:dId"
+              render={this.renderPlayDeck}
+            />
+            <Route
+              exact={true}
+              path="/createDeck"
+              render={this.renderCreateDeck}
             />
           </div>
-          <div>
-            <Link to="/">Home</Link>
-          </div>
-          <div>
-            <Link to="/createDeck">Create deck</Link>
-          </div>
-          <Route exact={true} path="/" render={this.renderAllDecks} />
-          <Route
-            exact={true}
-            path="/playDeck/:dId"
-            render={this.renderPlayDeck}
-          />
-          <Route
-            exact={true}
-            path="/createDeck"
-            render={this.renderCreateDeck}
-          />
         </div>
       </BrowserRouter>
     );
