@@ -37,8 +37,8 @@ class UnconnectedDeckDetails extends Component {
       `;
 
       return (
-        <div key={this.props.propsIdDeck} className="center-content">
-          <div className="card">
+        <div key={this.props.propsIdDeck} className="cardsDetails-container">
+          <div className="cardDetails">
             {/* Detalles */}
             {/* <div>Id Deck: {this.props.propsIdDeck}</div> */}
             {/* <div>Index Question: {this.props.propsDeckIndexQuestion}</div> */}

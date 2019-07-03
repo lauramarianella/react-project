@@ -30,8 +30,9 @@ let initialatingDeck = () => {
   }
 
   let newDataDeck = {
+    //'Title'
     id: 0, //state.stateDataDecks.length,
-    title: 'Title',
+    title: '',
     cards: cards,
   };
   return newDataDeck;

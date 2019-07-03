@@ -27,48 +27,59 @@ class UnconnectedCreateDeck extends Component {
       height: 5px;
     `;
 
+    // let MyButton = styled.button`
+    //   background: #4a91f2;
+    //   padding: 10px;
+    //   border-radius: 5px
+    //   color: #fff;
+    // `;
+
     const cards = [];
     for (let i = 0; i < this.props.propsNewDataDeck.cards.length; i++) {
       cards.push(<Card propsIdCard={i} />);
     }
 
     return (
-      <div className="center-content">
-        <div>
+      <div className="cardsDetails-container">
+        <div className="cardDetails">
           <form onSubmit={this.onSubmitHandler}>
-            <div>
-              Title:
-              <input
-                type="text"
-                placeholder="Title"
-                name="title"
-                value={this.props.propsNewDataDeck.title}
-                onChange={this.onChangeHandler}
-              />
-            </div>
+            <div className="container-form">
+              <div>
+                <div>Title</div>
+                <input
+                  type="text"
+                  placeholder="Title"
+                  name="title"
+                  value={this.props.propsNewDataDeck.title}
+                  onChange={this.onChangeHandler}
+                  className="text-field-new"
+                />
+              </div>
 
-            <div>
               <div>
+                {/* <div>Possible Id: {this.props.propsNewDataDeck.id}</div> */}
+                {cards.map((card, i) => {
+                  return (
+                    <div key={`keyCard${i}`} className="container-subform">
+                      {card}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="divCenter">
                 <div>
-                  {/* <div>Possible Id: {this.props.propsNewDataDeck.id}</div> */}
-                  {cards.map((card, i) => {
-                    return (
-                      <div key={`keyCard${i}`} className="container-form">
-                        {card}
-                      </div>
-                    );
-                  })}
+                  <input
+                    type="button"
+                    onClick={this.addCard}
+                    value="Add card"
+                  />
                 </div>
-              </div>
-            </div>
-            <div>
-              <div>
-                <input type="button" onClick={this.addCard} value="Add card" />
-              </div>
-              <div>
-                <button className="card-playBtn" type="submit">
-                  Submit
-                </button>
+                <div>
+                  <button type="submit" type="submit" className="card-playBtn">
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </form>

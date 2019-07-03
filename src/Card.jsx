@@ -20,11 +20,13 @@ class UnconnectedCard extends Component {
   render() {
     let deleteButton =
       this.props.propsIdCard >= MIN_NUM_CARDS ? (
-        <input
-          type="button"
-          value="-"
-          onClick={(ev) => this.deleteCard(ev, this.props.propsIdCard)}
-        />
+        <div className="divCenter">
+          <input
+            type="button"
+            value="Remove Card"
+            onClick={(ev) => this.deleteCard(ev, this.props.propsIdCard)}
+          />
+        </div>
       ) : (
         ''
       );
@@ -41,9 +43,10 @@ class UnconnectedCard extends Component {
       );
     }
     return (
-      <div className="container-subform">
+      <div className="container-subsubform">
         <div>
-          <div>Question: {this.props.propsIdCard}</div>
+          {deleteButton}
+          <div>Question {this.props.propsIdCard}</div>
           <div>
             <input
               type="text"
@@ -56,9 +59,8 @@ class UnconnectedCard extends Component {
               onChange={(ev) =>
                 this.onChangeHandler(ev, this.props.propsIdCard)
               }
+              className="text-field-new"
             />
-
-            {deleteButton}
           </div>
           {choices.map((choice, i) => {
             return <div key={`keyChoice${i}`}>{choice}</div>;

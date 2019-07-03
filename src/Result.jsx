@@ -52,9 +52,9 @@ class UnconnectedResult extends Component {
       : '';
 
     return (
-      <div className="center-content">
+      <div className="cardsDetails-container">
         {/* <div> played id: {playedDeck.id}</div> */}
-        <div className="card">
+        <div className="cardDetails">
           <div className="card-deck-title">
             <h1>Results</h1>
           </div>

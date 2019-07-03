@@ -32,41 +32,41 @@ class UnconnectedChoice extends Component {
 
   render() {
     let radioBtn = (
-      <div>
-        <input
-          type="radio"
-          name={this.props.propsIdCard}
-          value={
-            this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices[
-              this.props.propsIndexChoice
-            ]
-          }
-          onChange={(ev) =>
-            this.onChangeAnswerHandler(ev, this.props.propsIndexChoice)
-          }
-          checked={
-            this.props.propsNewDataDeck.cards[this.props.propsIdCard].answer ===
-            this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices[
-              this.props.propsIndexChoice
-            ]
-          }
-        />
-        <div>
-          Value:
-          {
-            this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices[
-              this.props.propsIndexChoice
-            ]
-          }
-        </div>
-      </div>
+      // <div>
+      <input
+        type="radio"
+        name={this.props.propsIdCard}
+        value={
+          this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices[
+            this.props.propsIndexChoice
+          ]
+        }
+        onChange={(ev) =>
+          this.onChangeAnswerHandler(ev, this.props.propsIndexChoice)
+        }
+        checked={
+          this.props.propsNewDataDeck.cards[this.props.propsIdCard].answer ===
+          this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices[
+            this.props.propsIndexChoice
+          ]
+        }
+      />
+      //   <div>
+      //     Value:
+      //     {
+      //       this.props.propsNewDataDeck.cards[this.props.propsIdCard].choices[
+      //         this.props.propsIndexChoice
+      //       ]
+      //     }
+      //   </div>
+      //  </div>
     );
 
     let deleteButton =
       this.props.propsIndexChoice >= MIN_NUM_CARDS_CHOICES ? (
         <input
           type="button"
-          value="-"
+          value="Remove choice"
           onClick={(ev) => this.deleteChoice(ev, this.props.propsIndexChoice)}
         />
       ) : (
@@ -76,7 +76,8 @@ class UnconnectedChoice extends Component {
     return (
       <div>
         <div>
-          Choice {this.props.propsIndexChoice} Mark as answer {radioBtn}
+          <span className="spanLeft">Choice {this.props.propsIndexChoice}</span>{' '}
+          <span className="spanRight">Mark as answer {radioBtn}</span>
         </div>
         <div>
           <input
@@ -90,6 +91,7 @@ class UnconnectedChoice extends Component {
             onChange={(ev) =>
               this.onChangeHandler(ev, this.props.propsIndexChoice)
             }
+            className="text-field-new"
           />
           {deleteButton}
         </div>
