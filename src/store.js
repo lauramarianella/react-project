@@ -30,9 +30,8 @@ let initialatingDeck = () => {
   }
 
   let newDataDeck = {
-    //'Title'
     id: 0, //state.stateDataDecks.length,
-    title: '',
+    title: 'Title',
     cards: cards,
   };
   return newDataDeck;
@@ -196,8 +195,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const persistedState = loadFromLocalStorage();
 //localStorage.clear();
 export let store = createStore(
-  // rootReducer,
-  // initialState,
   persistedReducer,
   persistedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
