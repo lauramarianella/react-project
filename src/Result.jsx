@@ -52,24 +52,27 @@ class UnconnectedResult extends Component {
       : '';
 
     return (
-      <div className="container-results">
+      <div className="center-content">
         {/* <div> played id: {playedDeck.id}</div> */}
-        {/* <div className="card"> */}
-        <div className="card-deck-title">
-          <h1>Results</h1>
-        </div>
-        <div className="card-containerBtns">
-          <h1>{scoreText}</h1>
-          <h2>{playedDeck.title}</h2>
-          <div>{results}</div>
-          <div>
-            <div className="card-playBtn">
-              <Link to={`/playDeck/${playedDeck.id}`}>
-                <div>Play again</div>
-              </Link>
+        <div className="card">
+          <div className="card-deck-title">
+            <h1>Results</h1>
+          </div>
+
+          <div className="card-containerBtns">
+            <div className="score-results">
+              <h1 className="centerText">{scoreText}</h1>
+              <h2>{playedDeck.title}</h2>
+              <div>{results}</div>
+            </div>
+            <div>
+              <div className="card-playBtn">
+                <Link to={`/playDeck/${playedDeck.id}`}>
+                  <div>Play again</div>
+                </Link>
+              </div>
             </div>
           </div>
-          {/* </div> */}
         </div>
       </div>
     );
