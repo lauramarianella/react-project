@@ -42,6 +42,7 @@ let rootReducer = (state = initialState, action) => {
     return { ...state, stateQueryDeckTitle: action.value };
   }
   if (action.type === 'playingDeck') {
+    state.stateDataDecks;
     return { ...state, stateIdDeck: action.value, stateDeckIndexQuestion: 0 };
   }
   if (action.type === 'savingAnswer') {

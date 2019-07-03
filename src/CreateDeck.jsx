@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './Card.jsx';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
+import styled from 'styled-components';
 
 class UnconnectedCreateDeck extends Component {
   onSubmitHandler = (ev) => {
@@ -21,36 +22,54 @@ class UnconnectedCreateDeck extends Component {
   };
 
   render() {
+    let DivContainer = styled.div`
+      background: #4a91f2;
+      height: 5px;
+    `;
+
     const cards = [];
     for (let i = 0; i < this.props.propsNewDataDeck.cards.length; i++) {
       cards.push(<Card propsIdCard={i} />);
     }
 
     return (
-      <div className="container-results">
-        <div>Creating new deck...</div>
-        <div>
-          Title:
-          <input
-            type="text"
-            placeholder="Title"
-            name="title"
-            value={this.props.propsNewDataDeck.title}
-            onChange={this.onChangeHandler}
-          />
-        </div>
+      <div className="center-content">
         <div>
           <form onSubmit={this.onSubmitHandler}>
-            <div>Possible Id: {this.props.propsNewDataDeck.id}</div>
-            {cards.map((card, i) => {
-              return <div key={`keyCard${i}`}>{card}</div>;
-            })}
             <div>
-              <input type="button" value="Add card" onClick={this.addCard} />
+              Title:
+              <input
+                type="text"
+                placeholder="Title"
+                name="title"
+                value={this.props.propsNewDataDeck.title}
+                onChange={this.onChangeHandler}
+              />
             </div>
 
             <div>
-              <input type="submit" value="Submit" />
+              <div>
+                <div>
+                  {/* <div>Possible Id: {this.props.propsNewDataDeck.id}</div> */}
+                  {cards.map((card, i) => {
+                    return (
+                      <div key={`keyCard${i}`} className="container-form">
+                        {card}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <input type="button" onClick={this.addCard} value="Add card" />
+              </div>
+              <div>
+                <button className="card-playBtn" type="submit">
+                  Submit
+                </button>
+              </div>
             </div>
           </form>
         </div>

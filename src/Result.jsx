@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 class UnconnectedResult extends Component {
   render() {
+    let DivAnswer = '';
     let playedDeckArray = this.props.propsDataDecks.filter((deck) => {
       return deck.id == this.props.propsIdDeck;
     });
@@ -13,12 +15,22 @@ class UnconnectedResult extends Component {
     let acc = 0;
     let results = playedDeck.cards.map((card, i) => {
       //console.log(card);
-      acc = card.answer === card.userAnswer ? acc + 1 : acc;
+      if (card.answer === card.userAnswer) {
+        acc = acc + 1;
+        DivAnswer = styled.div`
+          color: green;
+        `;
+      } else {
+        acc = acc;
+        DivAnswer = styled.div`
+          color: red;
+        `;
+      }
       return (
         <div key={i}>
           <h3>{card.question}</h3>
           <div>Answer: {card.answer}</div>
-          <div>Your answer: {card.userAnswer}</div>
+          <DivAnswer>Your answer: {card.userAnswer}</DivAnswer>
         </div>
       );
     });
@@ -26,29 +38,38 @@ class UnconnectedResult extends Component {
     let score = (acc / playedDeck.cards.length) * 100;
     let scoreText = '';
     score <= 0
-      ? (scoreText = score + 'Does not get it all 😞')
+      ? (scoreText = 'Does not get it all 😞')
       : score < 25
-      ? (scoreText = score + 'Potencial to get it one day 🤔')
+      ? (scoreText = 'Potencial to get it one day 🤔')
       : score < 50
-      ? (scoreText = score + 'Kind of gets it 😐')
+      ? (scoreText = 'Kind of gets it 😐')
       : score < 75
-      ? (scoreText = score + 'On the road to getting it 🙂')
+      ? (scoreText = 'On the road to getting it 🙂')
       : score < 100
-      ? (scoreText = score + 'Almost got it 😄')
+      ? (scoreText = 'Almost got it 😄')
       : score >= 100
-      ? (scoreText = score + 'Got it 😎')
+      ? (scoreText = 'Got it 😎')
       : '';
 
     return (
       <div className="container-results">
-        <div> played id: {playedDeck.id}</div>
-        <div> played title: {playedDeck.title}</div>
-        <div>{scoreText}</div>
-        <div>{results}</div>
-        <div>
+        {/* <div> played id: {playedDeck.id}</div> */}
+        {/* <div className="card"> */}
+        <div className="card-deck-title">
+          <h1>Results</h1>
+        </div>
+        <div className="card-containerBtns">
+          <h1>{scoreText}</h1>
+          <h2>{playedDeck.title}</h2>
+          <div>{results}</div>
           <div>
-            <Link to={`/playDeck/${playedDeck.id}`}>Play again</Link>
+            <div className="card-playBtn">
+              <Link to={`/playDeck/${playedDeck.id}`}>
+                <div>Play again</div>
+              </Link>
+            </div>
           </div>
+          {/* </div> */}
         </div>
       </div>
     );

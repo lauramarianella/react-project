@@ -41,7 +41,7 @@ class UnconnectedCard extends Component {
       );
     }
     return (
-      <div>
+      <div className="container-subform">
         <div>
           <div>Question: {this.props.propsIdCard}</div>
           <div>
