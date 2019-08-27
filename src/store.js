@@ -193,7 +193,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const persistedState = loadFromLocalStorage();
-//localStorage.clear();
+localStorage.clear();
 export let store = createStore(
   persistedReducer,
   persistedState,
